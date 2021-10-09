@@ -1,5 +1,5 @@
 # Trabalho prático – CC2632
-### Thiago Braga Martins Gomes * Matrícula 22121064-4
+## Thiago Braga Martins Gomes * Matrícula 22121064-4
 
 O trabalho prático da disciplina tem por objetivo desenvolver um algoritmo que simule um gerenciador
 financeiro. Esse gerenciador financeiro deverá armazenar informações de receitas e gastos de uma carteira
@@ -11,14 +11,14 @@ funcionalidades. O trabalho poderá ser feito de forma individual ou em duplas.
 Deve ser levado em consideração a instalação do [GCC](https://gcc.gnu.org/install/binaries.html) para compilação e geração do executavel.
 
 ```bash
-gcc main.c
+gcc -o app main.c
 ```
 
-## Iniciando o Módulo principal
-Após compilar o arquivo principal, sera gerado um aqruivo chamado a.exe, é ele que devemos levar em consideração para iniciar nosso projeto.
+## Iniciando o módulo principal
+Após compilar o arquivo main.c, sera gerado um aqruivo chamado app.exe, e é ele que devemos levar em consideração para iniciar nosso projeto.
 
 ```bash
-a.exe 
+app.exe 
 ```
 
 ## Contributing
