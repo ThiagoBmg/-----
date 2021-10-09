@@ -1,0 +1,1 @@
+char *tipo ="" , *valor = "" , *descricao = "", *data=""; 

@@ -1,0 +1,1 @@
+char *nome= "", *meta_pessoal= "", *valor_investido="";
