@@ -15,7 +15,7 @@ void recursao_menu(){
 
     if(user_input==1){
         printf("Certo...\n");
-        return menu();
+        return show_menu_options();
     }
     else if(user_input==2){
         printf("Ok\nAte Logo! :)\n");
@@ -28,13 +28,8 @@ void recursao_menu(){
 }
 
 void menu(){
-  printf("Ola, seja bem vindo ao Gerenciador Financeiro \nEscolha uma das opcoes para prosseguir: \n\n");
+  printf("Ola, seja bem vindo ao Gerenciador Financeiro\n");
   
-  int input = show_menu_options();
-
+  show_menu_options();
   // TODO: validar sistema operacional para validar o uso de cls ou clear
-  system("cls");
-  //system("clear");
-
-  router(input);
 }

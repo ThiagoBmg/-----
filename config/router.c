@@ -13,7 +13,7 @@ void router(int *input){
     return show_sobre();
   // rota não encontrada
   else{
-    printf("Opcao nao encontrata, tente novamente \n");
+    printf("Nao entendi sua resposta, tente novamente...\n");
     return menu();
   }
 }

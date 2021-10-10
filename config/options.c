@@ -19,15 +19,17 @@ int show_movimentacoes_types(){
 }
 
 /* OPÇÕES DO MENU */
-int show_menu_options(){
-   int user_input = 0; 
+void show_menu_options(){
+  int user_input = 0; 
+  printf("Escolha uma das opcoes para prosseguir: \n\n");
 
   for(int i =1; i < OPCOES_N+1 ; i++)
     printf("%d - %s \n", i ,MENU_OPTIONS[i-1]);
   
   scanf("%d", &user_input);
-
-  printf("A opcao selecionada foi: %s \n", MENU_OPTIONS[user_input-1]);
-
-  return user_input-1;
+  //printf("A opcao selecionada foi: %s \n", MENU_OPTIONS[user_input-1]);
+  
+  system("cls");
+  //system("clear");
+  return router(user_input-1);
 }
