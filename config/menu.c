@@ -5,6 +5,12 @@
 #include "../config/options.c"
 #include "../config/router.c"
 
+void menu(){
+  printf("Ola, seja bem vindo ao Gerenciador Financeiro\n");
+  
+  show_menu_options();
+  // TODO: validar sistema operacional para validar o uso de cls ou clear
+}
 
 void recursao_menu(){
     int user_input=0; 
@@ -25,11 +31,4 @@ void recursao_menu(){
         printf("Nao entendi sua resposta, tente novamente...\n");
         return recursao_menu();
     }
-}
-
-void menu(){
-  printf("Ola, seja bem vindo ao Gerenciador Financeiro\n");
-  
-  show_menu_options();
-  // TODO: validar sistema operacional para validar o uso de cls ou clear
 }

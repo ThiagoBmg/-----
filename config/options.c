@@ -5,7 +5,7 @@
 #include "../models/carteira.c"
 
 /* OPÇÕES TIPO DE MOVIMENTAÇÕES */
-int show_movimentacoes_types(){
+char* show_movimentacoes_types(){
   int user_input = 0; 
 
   for(int i =1; i < TIPO_MOVIMENTACAO_N+1 ; i++)
@@ -13,9 +13,9 @@ int show_movimentacoes_types(){
   
   scanf("%d", &user_input);
 
-  printf("A opcao selecionada foi: %s \n", TIPO_MOVIMENTACAO[user_input-1]);
+  //printf("A opcao selecionada foi: %s \n", TIPO_MOVIMENTACAO[user_input-1]);
 
-  return user_input-1;
+  return TIPO_MOVIMENTACAO[user_input-1];
 }
 
 /* OPÇÕES DO MENU */
@@ -31,5 +31,5 @@ void show_menu_options(){
   
   system("cls");
   //system("clear");
-  return router(user_input-1);
+  return router_menu(user_input-1);
 }
