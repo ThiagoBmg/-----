@@ -19,18 +19,36 @@ char* step_03_descricao(){
     return show_movimentacoes_descricao();
 }
 
-void step_confirmacao(){
-    return;
+void step_confirmacao(char *mov_type,long double mov_valor, char *mov_descricao){
+    system("cls");
+    printf("<< Lancamento a ser realizado >> \n");
+    printf("Tipo da Movimentacao: %s \n", mov_type);
+    printf("Valor da Movimentacao: %.2lf \n", mov_valor);
+    printf("Descricao da Movimentacao: %s \n\n", mov_descricao);
+    
+    
+    printf("Deseja confirmar este lancamento?\n1- Sim\n2- Nao\n\n");
+    int user_input = 0;
+    scanf("%d", &user_input);
+
+    if(user_input==1){
+        system("cls");
+        printf("Confirmado com sucesso :)\n\n");
+        return recursao_menu();
+    }else if(user_input==2){
+        system("cls");
+        printf("Ok, lancamento descartado. \n\n");
+        return recursao_menu();
+    }
+    else{
+        printf("Nao entendi sua resposta, tente novamente...\n");
+        return step_confirmacao(mov_type,mov_valor,mov_descricao);
+    }
 }
 
 void lancamento_workflow(){
     char *mov_type = step_01_mov_types();
     long double mov_valor = step_02_valor();
     char *mov_descricao = step_03_descricao();
-
-    
-    printf("FINAL DO FLUXO \n");
-    printf("Tipo da Movimentacao: %s \n", mov_type);
-    printf("Valor da Movimentacao: %.2lf \n", mov_valor);
-    printf("Descricao da Movimentacao: %s \n\n", mov_descricao);
+    step_confirmacao(mov_type, mov_valor,mov_descricao);
 }
