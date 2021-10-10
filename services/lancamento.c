@@ -1,3 +1,7 @@
+// repositório com as informações da carteira
+#define WALLET_FILE "./storage/lancamentos.txt"
+#include <stdio.h>
+
 char* step_01_mov_types(){
     system("cls");
     printf("Selecione o tipo do lancamento a ser realizado: \n\n");
@@ -19,7 +23,23 @@ char* step_03_descricao(){
     return show_movimentacoes_descricao();
 }
 
-void step_confirmacao(char *mov_type,long double mov_valor, char *mov_descricao){
+void step_05_final(char *mov_type,long double mov_valor, char *mov_descricao){
+   FILE *data = fopen(WALLET_FILE, "a");
+   fprintf(data, mov_type);
+   fprintf(data, ",");
+
+   char output[50];
+   snprintf(output, 50, "%f", mov_valor);
+   fprintf(data, output);
+   fprintf(data, ",");
+
+   fprintf(data, mov_descricao);
+   fprintf(data, "\n");
+   fclose(data);
+   return ;
+}
+
+void step_04_confirmacao(char *mov_type,long double mov_valor, char *mov_descricao){
     system("cls");
     printf("<< Lancamento a ser realizado >> \n");
     printf("Tipo da Movimentacao: %s \n", mov_type);
@@ -34,6 +54,7 @@ void step_confirmacao(char *mov_type,long double mov_valor, char *mov_descricao)
     if(user_input==1){
         system("cls");
         printf("Confirmado com sucesso :)\n\n");
+        step_05_final(mov_type, mov_valor,mov_descricao);
         return recursao_menu();
     }else if(user_input==2){
         system("cls");
@@ -41,14 +62,17 @@ void step_confirmacao(char *mov_type,long double mov_valor, char *mov_descricao)
         return recursao_menu();
     }
     else{
+   
         printf("Nao entendi sua resposta, tente novamente...\n");
-        return step_confirmacao(mov_type,mov_valor,mov_descricao);
+        return step_04_confirmacao(mov_type,mov_valor,mov_descricao);
     }
 }
+
 
 void lancamento_workflow(){
     char *mov_type = step_01_mov_types();
     long double mov_valor = step_02_valor();
     char *mov_descricao = step_03_descricao();
-    step_confirmacao(mov_type, mov_valor,mov_descricao);
+    step_04_confirmacao(mov_type, mov_valor,mov_descricao);
+   
 }
