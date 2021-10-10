@@ -4,6 +4,18 @@
 
 #include "../models/carteira.c"
 
+/* OPÇÕES DE DESCRIÇÃO  */
+char* show_movimentacoes_descricao(){
+  int user_input = 0;
+
+  for(int i=1; i< DESCRICAO_N+1; i++)
+    printf("%d - %s \n", i ,IN_OUT[i-1]);
+  
+  scanf("%d", &user_input);
+
+  return IN_OUT[user_input-1];
+}
+
 /* OPÇÕES TIPO DE MOVIMENTAÇÕES */
 char* show_movimentacoes_types(){
   int user_input = 0; 
@@ -13,8 +25,8 @@ char* show_movimentacoes_types(){
   
   scanf("%d", &user_input);
 
-  //printf("A opcao selecionada foi: %s \n", TIPO_MOVIMENTACAO[user_input-1]);
-
+  // printf("A opcao selecionada foi: %s \n", TIPO_MOVIMENTACAO[user_input-1]);
+  // TODO: adicionar validação, se a opção selecionada existe
   return TIPO_MOVIMENTACAO[user_input-1];
 }
 
@@ -27,9 +39,8 @@ void show_menu_options(){
     printf("%d - %s \n", i ,MENU_OPTIONS[i-1]);
   
   scanf("%d", &user_input);
-  //printf("A opcao selecionada foi: %s \n", MENU_OPTIONS[user_input-1]);
   
   system("cls");
-  //system("clear");
+
   return router_menu(user_input-1);
 }
