@@ -1,3 +1,0 @@
-Estudos,Saida
-Moradia,1.000000,Entrada
-Moradia,23.000000,Saida
