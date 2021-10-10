@@ -15,6 +15,6 @@ void router_menu(int *input){
   // rota não encontrada
   else{
     printf("Nao entendi sua resposta, tente novamente...\n");
-    return menu();
+    return show_menu_options();
   }
 }
