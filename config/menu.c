@@ -6,6 +6,7 @@
 #include "../config/router.c"
 
 void menu(){
+  system("cls");
   printf("Ola, seja bem vindo ao Gerenciador Financeiro\n");
   
   show_menu_options();
