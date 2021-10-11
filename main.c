@@ -11,6 +11,10 @@ void main(void) {
 
   // checando se existe um usuário cadastrado.
   int result = user_validate();
+
+  // criando diretorio de storage, caso ainda não exista 
+  system("mkdir -p storage");
+
   if(result == 0)
     return user_create();
     

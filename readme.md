@@ -17,6 +17,8 @@ gcc -o app main.c
 ## Iniciando o módulo principal
 Após compilar o arquivo main.c, sera gerado um aqruivo chamado app.exe, e é ele que devemos levar em consideração para iniciar nosso projeto.
 
+* É necessário que exista uma pasta chamada storage na raiz do projeto, pois é aonde os dados seram armazenados.  
+
 ```bash
 app.exe 
 ```
