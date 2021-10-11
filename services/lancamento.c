@@ -1,5 +1,5 @@
 // repositório com as informações da carteira
-#define WALLET_FILE "./storage/lancamentos.txt"
+#define CARTEIRA_FILE "./storage/lancamentos.txt"
 #include <stdio.h>
 
 char* step_01_mov_types(){
@@ -24,7 +24,7 @@ char* step_03_descricao(){
 }
 
 void step_05_final(char *mov_type,long double mov_valor, char *mov_descricao){
-   FILE *data = fopen(WALLET_FILE, "a");
+   FILE *data = fopen(CARTEIRA_FILE, "a");
    fprintf(data, mov_type);
    fprintf(data, ",");
 
@@ -62,17 +62,14 @@ void step_04_confirmacao(char *mov_type,long double mov_valor, char *mov_descric
         return recursao_menu();
     }
     else{
-   
         printf("Nao entendi sua resposta, tente novamente...\n");
         return step_04_confirmacao(mov_type,mov_valor,mov_descricao);
     }
 }
-
 
 void lancamento_workflow(){
     char *mov_type = step_01_mov_types();
     long double mov_valor = step_02_valor();
     char *mov_descricao = step_03_descricao();
     step_04_confirmacao(mov_type, mov_valor,mov_descricao);
-   
 }
