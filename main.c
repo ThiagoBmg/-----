@@ -13,7 +13,7 @@ void main(void) {
   int result = user_validate();
 
   // criando diretorio de storage, caso ainda não exista 
-  system("mkdir -p storage");
+  system("mkdir storage");
 
   if(result == 0)
     return user_create();
