@@ -1,6 +1,8 @@
 // repositório com as informações da carteira
 #define CARTEIRA_FILE "./storage/lancamentos.txt"
 #include <stdio.h>
+#include <time.h>
+#include <assert.h>
 
 char* step_01_mov_types(){
     system("cls");
@@ -33,6 +35,14 @@ void step_05_final(char *mov_type,long double mov_valor, char *mov_descricao){
    fprintf(data, output);
    fprintf(data, ",");
 
+    time_t t = time(NULL);
+    struct tm *tm = localtime(&t);
+    char s[64];
+    
+    assert(strftime(s, sizeof(s), "%c", tm));
+    fprintf(data, s);
+    fprintf(data, ",");
+
    fprintf(data, mov_descricao);
    fprintf(data, "\n");
    fclose(data);
@@ -46,15 +56,14 @@ void step_04_confirmacao(char *mov_type,long double mov_valor, char *mov_descric
     printf("Valor da Movimentacao: %.2lf \n", mov_valor);
     printf("Descricao da Movimentacao: %s \n\n", mov_descricao);
     
-    
     printf("Deseja confirmar este lancamento?\n1- Sim\n2- Nao\n\n");
     int user_input = 0;
     scanf("%d", &user_input);
 
     if(user_input==1){
         system("cls");
-        printf("Confirmado com sucesso :)\n\n");
         step_05_final(mov_type, mov_valor,mov_descricao);
+        printf("Confirmado com sucesso :)\n\n");
         return recursao_menu();
     }else if(user_input==2){
         system("cls");
