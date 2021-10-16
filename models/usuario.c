@@ -2,7 +2,17 @@
 #include <stdlib.h>
 #include <string.h>
 /* #include "../config/menu.c"
- */#define USUARIO_FILE "./storage/usuario.txt"
+ */
+#define USUARIO_FILE "./storage/usuario.txt"
+
+#if defined(__MINGW32__) || defined(_MSC_VER)
+#define limpar_input() fflush(stdin)
+#define limpar_tela() system("cls")
+#else
+#include <stdio_ext.h>
+#define limpar_input() __fpurge(stdin)
+#define limpar_tela() system("clear")
+#endif
 
 char *nome= "", *meta_pessoal= "";
 long double valor = 0;
@@ -44,7 +54,7 @@ void user_create(void){
     /* 
     // Responsável por cadastrar um usuário
     */
-    system("cls");
+    limpar_tela();
 
     printf("Certo, Qual o seu primeiro nome?\n");
     scanf("%s", &nome);
