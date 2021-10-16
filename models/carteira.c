@@ -20,7 +20,7 @@ int novo_lancamento(char *mov_type,long double mov_valor, char *mov_descricao){
    fprintf(data, ",");
 
    char output[50];
-   snprintf(output, 50, "%f", mov_valor);
+   snprintf(output, 50, "%Lf", mov_valor);
    fprintf(data, output);
    fprintf(data, ",");
 
