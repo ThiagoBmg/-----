@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-/* #include "../config/menu.c"
- */
 #define USUARIO_FILE "./storage/usuario.txt"
 
 #if defined(__MINGW32__) || defined(_MSC_VER)
@@ -19,7 +17,7 @@ long double valor = 0;
 
 int user_validate(void){
     /* 
-    // Valida de existe um usuário cadastrado
+    // Valida se existe um usuário cadastrado
     // == arquivo existente em ./storage/usuario
     // caso não exista, leva o usuário para um fluxo de cadastro
     */
