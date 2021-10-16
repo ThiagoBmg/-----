@@ -5,8 +5,17 @@
 #include "../config/options.c"
 #include "../config/router.c"
 
+#if defined(__MINGW32__) || defined(_MSC_VER)
+#define limpar_input() fflush(stdin)
+#define limpar_tela() system("cls")
+#else
+#include <stdio_ext.h>
+#define limpar_input() __fpurge(stdin)
+#define limpar_tela() system("clear")
+#endif
+
 void menu(){
-  system("cls");
+  limpar_tela();
   printf("Ola, seja bem vindo ao Gerenciador Financeiro\n");
   
   show_menu_options();
@@ -18,7 +27,7 @@ void recursao_menu(){
     printf("Deseja realizar uma nova acao? \n1- Sim\n2- Nao \n\n");
 
     scanf("%d", &user_input);
-    system("cls");
+    limpar_tela();
 
     if(user_input==1){
         printf("Certo...\n");

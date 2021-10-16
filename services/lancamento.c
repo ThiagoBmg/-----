@@ -1,15 +1,20 @@
-// repositório com as informações da carteira
-#define CARTEIRA_FILE "./storage/lancamentos.txt"
-#include <stdio.h>
+#if defined(__MINGW32__) || defined(_MSC_VER)
+#define limpar_input() fflush(stdin)
+#define limpar_tela() system("cls")
+#else
+#include <stdio_ext.h>
+#define limpar_input() __fpurge(stdin)
+#define limpar_tela() system("clear")
+#endif
 
 char* step_01_mov_types(){
-    system("cls");
+    limpar_tela();
     printf("Selecione o tipo do lancamento a ser realizado: \n\n");
     return show_movimentacoes_types();
 }
 
 long double step_02_valor(){
-    system("cls");
+    limpar_tela();
     printf("Agora digite o valor: \n");
 
     long double v=0; 
@@ -18,46 +23,29 @@ long double step_02_valor(){
 }
 
 char* step_03_descricao(){
-    system("cls");
+    limpar_tela();
     printf("Qual a descricao da movimentacao? \n");
     return show_movimentacoes_descricao();
 }
 
-void step_05_final(char *mov_type,long double mov_valor, char *mov_descricao){
-   FILE *data = fopen(CARTEIRA_FILE, "a");
-   fprintf(data, mov_type);
-   fprintf(data, ",");
-
-   char output[50];
-   snprintf(output, 50, "%f", mov_valor);
-   fprintf(data, output);
-   fprintf(data, ",");
-
-   fprintf(data, mov_descricao);
-   fprintf(data, "\n");
-   fclose(data);
-   return ;
-}
-
 void step_04_confirmacao(char *mov_type,long double mov_valor, char *mov_descricao){
-    system("cls");
+    limpar_tela();
     printf("<< Lancamento a ser realizado >> \n");
     printf("Tipo da Movimentacao: %s \n", mov_type);
     printf("Valor da Movimentacao: %.2lf \n", mov_valor);
     printf("Descricao da Movimentacao: %s \n\n", mov_descricao);
-    
     
     printf("Deseja confirmar este lancamento?\n1- Sim\n2- Nao\n\n");
     int user_input = 0;
     scanf("%d", &user_input);
 
     if(user_input==1){
-        system("cls");
+        limpar_tela();
+        novo_lancamento(mov_type, mov_valor,mov_descricao);
         printf("Confirmado com sucesso :)\n\n");
-        step_05_final(mov_type, mov_valor,mov_descricao);
         return recursao_menu();
     }else if(user_input==2){
-        system("cls");
+        limpar_tela();
         printf("Ok, lancamento descartado. \n\n");
         return recursao_menu();
     }

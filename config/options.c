@@ -4,6 +4,16 @@
 
 #include "../models/carteira.c"
 
+
+#if defined(__MINGW32__) || defined(_MSC_VER)
+#define limpar_input() fflush(stdin)
+#define limpar_tela() system("cls")
+#else
+#include <stdio_ext.h>
+#define limpar_input() __fpurge(stdin)
+#define limpar_tela() system("clear")
+#endif
+
 /* OPÇÕES DE DESCRIÇÃO  */
 char* show_movimentacoes_descricao(){
   int user_input = 0;
@@ -40,7 +50,7 @@ void show_menu_options(){
   
   scanf("%d", &user_input);
   
-  system("cls");
+  limpar_tela();
 
   return router_menu(user_input-1);
 }
