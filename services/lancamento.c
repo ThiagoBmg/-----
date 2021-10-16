@@ -18,7 +18,7 @@ long double step_02_valor(){
     printf("Agora digite o valor: \n");
 
     long double v=0; 
-    scanf("%lf", &v);
+    scanf("%Lf", &v);
     return v;
 }
 
@@ -32,7 +32,7 @@ void step_04_confirmacao(char *mov_type,long double mov_valor, char *mov_descric
     limpar_tela();
     printf("<< Lancamento a ser realizado >> \n");
     printf("Tipo da Movimentacao: %s \n", mov_type);
-    printf("Valor da Movimentacao: %.2lf \n", mov_valor);
+    printf("Valor da Movimentacao: %.2Lf \n", mov_valor);
     printf("Descricao da Movimentacao: %s \n\n", mov_descricao);
     
     printf("Deseja confirmar este lancamento?\n1- Sim\n2- Nao\n\n");
