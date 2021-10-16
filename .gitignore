@@ -1,4 +1,3 @@
-app.exe
-app
+app*
 .vscode/
 storage/* 
