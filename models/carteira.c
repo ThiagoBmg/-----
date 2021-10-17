@@ -37,4 +37,3 @@ int novo_lancamento(char *mov_type,long double mov_valor, char *mov_descricao){
    fclose(data);
    return 0;
 }
-
