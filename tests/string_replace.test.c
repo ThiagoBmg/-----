@@ -1,12 +1,19 @@
 #include "../utils/string_replace.c"
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 
 void test_string_replace(){
     char string_test[] = "STRING REPLACE TESTE -> FAIL";
-    string_replace(string_test, sizeof(string_test)+sizeof("OK :)")-sizeof("FAIL"), "FAIL", "OK :)");
-    printf("%s", string_test);
-    return exit(1);
+    char string_ok[] = "STRING REPLACE TESTE -> OK :)";
+    string_replace(string_test,sizeof(string_ok), "FAIL", "OK :)");
+    //printf("%s", string_test);
+
+    int result = strcmp(string_test, string_ok);
+    printf("%s\n", string_test);
+    if(!result == 0)
+        return  exit(1);
+    return;
 }
 
 
