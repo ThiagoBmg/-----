@@ -13,12 +13,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: teste
-      run: echo teste
-    - name: teste
-      run: pwd
-    - name: teste
-      run: sh ./scripts/start.sh
+    - name: Testes
+      run: sh ./scripts/test.sh 
+
   
 
    
