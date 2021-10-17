@@ -5,4 +5,3 @@ echo "Compilando testes ..."
 gcc -o ./tests/test.exe ./tests/string_replace.test.c ; 
 echo "Iniciando testes \n"
 ./tests/test.exe
-
