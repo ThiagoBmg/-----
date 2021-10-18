@@ -8,7 +8,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <string.h>
 #include "../utils/string_replace.c"
 
 // variavel global responsável por armazenar 
