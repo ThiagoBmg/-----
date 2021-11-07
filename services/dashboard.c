@@ -27,13 +27,26 @@ FILE * get_template(char * url)
     return file;
 }
 
-// responsável por definir uma string com o template customizado, de acordo com os lançamentos
-// args str -> str = string contendo o template customizado
-// return strcat -> retorna a concatenação de uma string vazia + o template customizado
-void define_custom_context(char str[MAX_B])
+void export_report(){
+    // escrevendo um novo arquivo html
+    FILE *file = fopen("./reports/meu_relatorio.html", "w");
+    fprintf(file, custom_context);
+    fclose(file);
+    printf("Relatorio exportado com sucesso em ./reports/meu_relatorio.html \n\n");
+}
+
+void define_custom_context(FILE * template)
 {
-    //printf("valor recebido para concatenar: %s", str);
-    //strcat(custom_context, str);
+    custom_context = (char *)malloc(MAX_B*sizeof(char)); 
+    char templateLine[MAX_B];
+    while(!feof(template)){
+        fgets(templateLine, MAX_B, template);
+        string_replace(templateLine, MAX_B, "{{STR_REPLACE}}", context_temp);
+        //printf("valor recebido para concatenar: %s", templateLine);
+        strcat(custom_context, templateLine);
+    }
+    
+    
     return; 
 }
 
@@ -71,7 +84,7 @@ char * create_context(FILE * lancamentos)
         // identificando que não existem mais registros validos para serem renderizados
         if(!valor) {
             //printf("%s", custom_context);
-            define_custom_context(context_temp);
+            //define_custom_context(context_temp);
             return "";
         }
 
@@ -105,21 +118,18 @@ char * read_template(FILE * template)
 
 int dashboard_service()
 {
-    char * custom_context = (char *)malloc(MAX_B*sizeof(char)); 
-
     FILE * lancamentos = get_template(LANCAMENTOS_PATH);
     FILE * template = get_template(TEMPLATE_PATH);
-    
     create_context(lancamentos); // função que cria e atribui o contexto customizado a uma string global -> printf("%s", custom_context);
-
-    printf("%s \n", context_temp);
-    recursao_menu();
-    
+    define_custom_context(template); // função que substitui no template o contexto criado anteriormente
+    export_report();
+    recursao_menu();  // é necessário remover em um cenário de testes
     return 0;
 }
 
+/*  DEV MODE ONLY  */
 //int main()
 //{
 //    dashboard_service();
 //    return 0;
-//}   
+//} 
