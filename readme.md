@@ -12,14 +12,14 @@ funcionalidades. O trabalho poderá ser feito de forma individual ou em duplas.
 
 ## ✨ Features
 * Minha Carteira: local aonde o usuário pode monitorar em tempo real a situação de sua carteira e pensar em estratégias para melhorar seu cenário. 
-* Dashboards: Possibilidade de extrair relatórios com dados da carteira do usuário   
-## 📦  Build
+* Dashboards: Possibilidade de extrair relatórios com dados da carteira do usuário
 
+## 📦  Build
 Para executar o projeto localmente, deve ser levado em consideração a instalação do [GCC](https://gcc.gnu.org/install/binaries.html) para compilação e geração do executavel.
 
 Pensando em um cenário que podemos enfrentar, de incompatibilidade de sistema operacional, decidimos implementar o uso do Docker para garantir que o projeto funcione corretamente em um sistema Linux-Ubuntu.
-## Criando com o Docker 
- 
+
+## Criando com o Docker  
 ```bash
 # criando imagem e iniciando container com o Docker
 make build
@@ -31,11 +31,15 @@ make
 ```
 
 ## Criando e iniciando o projeto localmente
-
 ```bash
 # para iniciar o projeto localmente basta digitar make
 make
 ```
+
+## Iniciando o projeto através do Replit
+https://replit.com/@ThiagoBmg/gerenciador-financeiro-FEI
+
+basta clicar no botão RUN, na perte superior da interface 
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

@@ -8,7 +8,7 @@ start:
 	echo "Compilando o projeto..."	
 	gcc -o app.exe main.c -w;
 	echo "Iniciando o projeto :) \n\n"
-	./app.exe 
+	./app.exe  
 test:
 	#!/bin/sh
 	echo "Removendo arquivos de testes antigos..."
@@ -24,11 +24,11 @@ build:
 	docker exec -it gerenciador_financeiro_FEI bash;
 
 # --- tests only ---
-#dashboard: 
-#	#!/bin/sh
-#	echo "Removendo arquivo do serviço de dashboard..."
-#	rm -rf ./services/dash.exe;
-#	echo "Compilando serviço ..."
-#	gcc -o ./services/dash.exe ./services/dashboard.c -w; 
-#	echo "Iniciando serviço \n"
-#	./services/dash.exe
+dashboard: 
+	#!/bin/sh
+	echo "Removendo arquivo do serviço de dashboard..."
+	rm -rf ./services/dash.exe;
+	echo "Compilando serviço ..."
+	gcc -o ./services/dash.exe ./services/dashboard.c -w; 
+	echo "Iniciando serviço \n"
+	./services/dash.exe

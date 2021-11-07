@@ -9,6 +9,7 @@
 void main(void){
   // criando diretorio de storage
   system("mkdir storage");
+  system("mkdir reports");
   limpar_tela();
   // checando se existe um usuário cadastrado.
   int result = user_validate();
