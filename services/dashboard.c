@@ -1,6 +1,4 @@
 // script responsável por gerar os relatórios desejados
-// TODO: corrigir bug com o contexto no return em create_context
-// TODO: validar melhor metodo para atribuir valor a uma string 
 #define TEMPLATE_PATH "./templates/dashboard.html"
 #define LANCAMENTOS_PATH "./storage/lancamentos.txt"
 #define OUTPUT_PATH "./reports/"
@@ -8,44 +6,57 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "../utils/string_replace.c"
+
+#include "../utils/string_replace.h"
+
+// TODO: validar se existe lançamento antes de gerar o relatório
 
 // variavel global responsável por armazenar 
 // o contexto personalizado criado pela 
 // função create_context e definido em define_custom_context
-char custom_context[MAX_B];
+char * context_temp;
 
+// responsável por realizar a leitura de um arquivo de texto
+// [args] url -> str = caminho para o arquivo que deseja realizar a leitura
+// [return] FILE -> retorna o arquivo para manipulação 
 FILE * get_template(char * url)
 {
-    // responsável por realizar a leitura de um arquivo de texto
-    // [args] url -> str = caminho para o arquivo que deseja realizar a leitura
-    // [return] FILE -> retorna o arquivo para manipulação 
     FILE * file;
     file = fopen(url, "r+");
     return file;
 }
 
-char * define_custom_context(char str[MAX_B])
+void define_custom_context(FILE * template)
 {
-    // responsável por definir uma string com o template customizado, de acordo com os lançamentos
-    // args str -> str = string contendo o template customizado
-    // return strcat -> retorna a concatenação de uma string vazia + o template customizado
-    return strcat(custom_context, str);
+    char templateLine[MAX_B];
+
+    FILE *file = fopen("./reports/meu_relatorio.html", "w");
+
+    while(!feof(template)){
+        fgets(templateLine, MAX_B, template);
+        string_replace(templateLine, MAX_B, "{{STR_REPLACE}}", context_temp);
+        printf("html line -> : %s", templateLine);
+        fprintf(file, templateLine);
+    }
+    fclose(file);
+    
+    return; 
 }
 
+// responsável por criar o contexto de lançamentos
+// e realizar a leitura dos dados do arquivo txt que contem os lançamentos
+// [args] lancamentos -> FILE = arquivo de lançamentos já aberto 
+// [return]  define_custom_context -> retorna a função que ira definir o contexto customizado após coletar todos os dados do arquivo
 char * create_context(FILE * lancamentos)
 {
-    // responsável por criar o contexto de lançamentos
-    // e realizar a leitura dos dados do arquivo txt que contem os lançamentos
-    // [args] lancamentos -> FILE = arquivo de lançamentos já aberto 
-    // [return]  define_custom_context -> retorna a função que ira definir o contexto customizado após coletar todos os dados do arquivo
-    char lancamentosLine[MAX_B] , context_temp[MAX_B];
+    char lancamentosLine[MAX_B];
+    context_temp = (char *)malloc(10*sizeof(char)); 
     // para cada lancamento ... 
     while(!feof(lancamentos)){
         fgets(lancamentosLine, MAX_B, lancamentos);
         int init_size = strlen(lancamentosLine);
         char * mov_type,  * valor, * data, * descricao; 
-        char tag_[] = " <tr> <td>{{%%mov_type%%}}</td> <td>{{%%valor%%}}</td> <td>{{%%data%%}}</td> <td>{{%%descricao%%}}</td></tr>";
+        char tag_[] = "<tr><td>{{%%mov_type%%}}</td><td>{{%%valor%%}}</td><td>{{%%data%%}}</td><td>{{%%descricao%%}}</td></tr>";
         
         // buscando os lancamentos
         int current_line = 0;
@@ -64,24 +75,28 @@ char * create_context(FILE * lancamentos)
         }while (ptr != NULL);
 
         // identificando que não existem mais registros validos para serem renderizados
-        if(!valor) return define_custom_context(context_temp);
-        
+        if(!valor) {
+            //printf("%s", custom_context);
+            //define_custom_context(context_temp);
+            return "";
+        }
+
         // substituindo os valores no template html com os valores do arquivo de lancamentos
         string_replace(tag_, MAX_B, "{{%%mov_type%%}}", mov_type);
         string_replace(tag_, MAX_B, "{{%%valor%%}}", valor);
         string_replace(tag_, MAX_B, "{{%%data%%}}", data);
         string_replace(tag_, MAX_B, "{{%%descricao%%}}", descricao);
-
         // concatenando o texto em uma string temporaria 
         strcat( context_temp, tag_);
     }
+    return "done";
 }
 
+// responsável por ler e retornar o template do relatório em html
+// [args] template -> FILE = arquivo de template do relatório em HTML já aberto
+// [return] response -> str = retorna o template em html convertido para string
 char * read_template(FILE * template)
 {
-    // responsável por ler e retornar o template do relatório em html
-    // [args] template -> FILE = arquivo de template do relatório em HTML já aberto
-    // [return] response -> str = retorna o template em html convertido para string
     char * response;
     char htmlTemplateLine[MAX_B];
     
@@ -94,10 +109,19 @@ char * read_template(FILE * template)
     return response;
 }
 
-int main(void)
+int dashboard_service()
 {
     FILE * lancamentos = get_template(LANCAMENTOS_PATH);
     FILE * template = get_template(TEMPLATE_PATH);
-    char * html_file_string = read_template(template);
     create_context(lancamentos); // função que cria e atribui o contexto customizado a uma string global -> printf("%s", custom_context);
+    define_custom_context(template); // função que substitui no template o contexto criado anteriormente
+    recursao_menu();  // é necessário remover em um cenário de testes
+    return 0;
 }
+
+/*  DEV MODE ONLY  */
+//int main()
+//{
+//    dashboard_service();
+//    return 0;
+//} 

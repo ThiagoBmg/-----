@@ -1,6 +1,6 @@
-// TODO: declarar possiveis caminhos do fluxo aqui. 
 #include "sobre.c"
 #include "../services/lancamento.c"
+#include "../services/dashboard.c"
 
 int router_menu(int *input){
   if(input==0)
@@ -8,7 +8,7 @@ int router_menu(int *input){
     lancamento_workflow();  
   if(input==1)
     //"Gerar Relatorio"
-    return 1;
+    dashboard_service();
   if(input==2)
     //"Sobre Este App"
     show_sobre();
