@@ -2,19 +2,21 @@
 #include "sobre.c"
 #include "../services/lancamento.c"
 
-void router_menu(int *input){
-  //"Novo Lancamento"
+int router_menu(int *input){
   if(input==0)
-    return lancamento_workflow();
-  //"Gerar Relatorio"
+    //"Novo Lancamento"
+    lancamento_workflow();  
   if(input==1)
-    return 0;
-  //"Sobre Este App"
+    //"Gerar Relatorio"
+    return 1;
   if(input==2)
-    return show_sobre();
-  // rota não encontrada
+    //"Sobre Este App"
+    show_sobre();
   else{
+    // rota não encontrada
     printf("Nao entendi sua resposta, tente novamente...\n");
-    return show_menu_options();
+    show_menu_options();
+    return 0;
   }
+  return 1;
 }

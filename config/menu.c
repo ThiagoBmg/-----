@@ -4,25 +4,18 @@
 
 #include "../config/options.c"
 #include "../config/router.c"
-
-#if defined(__MINGW32__) || defined(_MSC_VER)
-#define limpar_input() fflush(stdin)
-#define limpar_tela() system("cls")
-#else
-#include "../include/stdio_ext.h"
-#define limpar_input() __fpurge(stdin)
-#define limpar_tela() system("clear")
-#endif
+#include "../utils/clear_command.h"
 
 void menu(){
   limpar_tela();
   printf("Ola, seja bem vindo ao Gerenciador Financeiro\n");
   
   show_menu_options();
+  return;
   // TODO: validar sistema operacional para validar o uso de cls ou clear
 }
 
-void recursao_menu(){
+int recursao_menu(){
     int user_input=0; 
     printf("Deseja realizar uma nova acao? \n1- Sim\n2- Nao \n\n");
 
@@ -31,14 +24,16 @@ void recursao_menu(){
 
     if(user_input==1){
         printf("Certo...\n");
-        return show_menu_options();
+        show_menu_options();
+        return 1;
     }
     else if(user_input==2){
         printf("Ok\nAte Logo! :)\n");
-        return;
+        exit(0);
     }
     else{
-        printf("Nao entendi sua resposta, tente novamente...\n");
-        return recursao_menu();
+        printf("Nao entendi sua resposta, tente novamente...\n"); 
+        recursao_menu(); 
+        return 1;
     }
 }

@@ -1,9 +1,7 @@
+
 #if defined(__MINGW32__) || defined(_MSC_VER)
-#define limpar_input() fflush(stdin)
 #define limpar_tela() system("cls")
 #else
-#include "../include/stdio_ext.h"
-#define limpar_input() __fpurge(stdin)
 #define limpar_tela() system("clear")
 #endif
 
@@ -28,7 +26,7 @@ char* step_03_descricao(){
     return show_movimentacoes_descricao();
 }
 
-void step_04_confirmacao(char *mov_type,long double mov_valor, char *mov_descricao){
+int step_04_confirmacao(char *mov_type,long double mov_valor, char *mov_descricao){
     limpar_tela();
     printf("<< Lancamento a ser realizado >> \n");
     printf("Tipo da Movimentacao: %s \n", mov_type);
@@ -43,16 +41,19 @@ void step_04_confirmacao(char *mov_type,long double mov_valor, char *mov_descric
         limpar_tela();
         novo_lancamento(mov_type, mov_valor,mov_descricao);
         printf("Confirmado com sucesso :)\n\n");
-        return recursao_menu();
+        recursao_menu();
     }else if(user_input==2){
         limpar_tela();
         printf("Ok, lancamento descartado. \n\n");
-        return recursao_menu();
+        recursao_menu();
     }
     else{
         printf("Nao entendi sua resposta, tente novamente...\n");
-        return step_04_confirmacao(mov_type,mov_valor,mov_descricao);
+        step_04_confirmacao(mov_type,mov_valor,mov_descricao);
+        return 0;
     }
+    // caso tudo ocorra bem retorna true // 1
+    return 1;
 }
 
 void lancamento_workflow(){
