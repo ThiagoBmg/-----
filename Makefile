@@ -18,7 +18,13 @@ test:
 	gcc -o ./tests/test.exe ./tests/string_replace.test.c ; 
 	echo "Iniciando testes \n"
 	./tests/test.exe
-
+build: 
+	#!/bin/sh
+#	docker rmi $(docker images -q);
+#	docker stop $(docker ps -a -q);
+#	docker rm $(docker ps -a -q);
+	docker build -t app_image .;
+	docker run -d -t app_image;
 # --- tests only ---
 #dashboard: 
 #	#!/bin/sh

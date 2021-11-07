@@ -1,6 +1,4 @@
 // script responsável por gerar os relatórios desejados
-// TODO: corrigir bug com o contexto no return em create_context
-// TODO: validar melhor metodo para atribuir valor a uma string 
 #define TEMPLATE_PATH "./templates/dashboard.html"
 #define LANCAMENTOS_PATH "./storage/lancamentos.txt"
 #define OUTPUT_PATH "./reports/"
@@ -10,6 +8,8 @@
 #include <string.h>
 
 #include "../utils/string_replace.h"
+
+// TODO: validar se existe lançamento antes de gerar o relatório
 
 // variavel global responsável por armazenar 
 // o contexto personalizado criado pela 
