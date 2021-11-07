@@ -24,11 +24,11 @@ build:
 	docker exec -it gerenciador_financeiro_FEI bash;
 
 # --- tests only ---
-#dashboard: 
-#	#!/bin/sh
-#	echo "Removendo arquivo do serviço de dashboard..."
-#	rm -rf ./services/dash.exe;
-#	echo "Compilando serviço ..."
-#	gcc -o ./services/dash.exe ./services/dashboard.c -w; 
-#	echo "Iniciando serviço \n"
-#	./services/dash.exe
+dashboard: 
+	#!/bin/sh
+	echo "Removendo arquivo do serviço de dashboard..."
+	rm -rf ./services/dash.exe;
+	echo "Compilando serviço ..."
+	gcc -o ./services/dash.exe ./services/dashboard.c -w; 
+	echo "Iniciando serviço \n"
+	./services/dash.exe
