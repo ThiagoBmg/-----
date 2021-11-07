@@ -1,5 +1,5 @@
 all: 
-	make update
+	make updateBranch
 	make start
 start: 
 	#!/bin/sh
@@ -18,13 +18,16 @@ test:
 	echo "Iniciando testes \n"
 	./tests/test.exe
 build: 
-	#!/bin/sh
+	#!/bin/shð
 	docker build -t app_image .;
 	docker run -t -d --name gerenciador_financeiro_FEI app_image;
 	docker exec -it gerenciador_financeiro_FEI bash;
-update:
+updateBranch:
 	git checkout master;
 	git pull origin master;
+remove:
+	docker stop gerenciador_financeiro_FEI;
+	docker rm gerenciador_financeiro_FEI;
 # --- tests only ---
 dashboard: 
 	#!/bin/sh
