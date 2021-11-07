@@ -8,7 +8,7 @@ start:
 	echo "Compilando o projeto..."	
 	gcc -o app.exe main.c -w;
 	echo "Iniciando o projeto :) \n\n"
-	./app.exe 
+	./app.exe  
 test:
 	#!/bin/sh
 	echo "Removendo arquivos de testes antigos..."
