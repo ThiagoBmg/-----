@@ -1,6 +1,6 @@
 all: 
+	make update
 	make start
-
 start: 
 	#!/bin/sh
 	echo "Removendo versões anteriores"
@@ -22,7 +22,9 @@ build:
 	docker build -t app_image .;
 	docker run -t -d --name gerenciador_financeiro_FEI app_image;
 	docker exec -it gerenciador_financeiro_FEI bash;
-
+update:
+	git checkout master;
+	git pull origin master;
 # --- tests only ---
 dashboard: 
 	#!/bin/sh

@@ -35,11 +35,11 @@ void define_custom_context(FILE * template)
     while(!feof(template)){
         fgets(templateLine, MAX_B, template);
         string_replace(templateLine, MAX_B, "{{STR_REPLACE}}", context_temp);
-        printf("html line -> : %s", templateLine);
+        //printf("html line -> : %s", templateLine);
         fprintf(file, templateLine);
     }
     fclose(file);
-    
+    printf("Relatório gerado com sucesso, uma versão atualizada do relatório foi disponibilizada no diretório ./reports/meu_relatorio.html \n\n");
     return; 
 }
 
