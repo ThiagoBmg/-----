@@ -1,4 +1,5 @@
 all: 
+	make update
 	make start
 
 start: 
@@ -23,6 +24,9 @@ build:
 	docker run -t -d --name gerenciador_financeiro_FEI app_image;
 	docker exec -it gerenciador_financeiro_FEI bash;
 
+update:
+	git checkout master;
+	git pull origin master;
 # --- tests only ---
 dashboard: 
 	#!/bin/sh

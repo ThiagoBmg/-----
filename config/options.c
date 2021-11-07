@@ -14,7 +14,14 @@ char* show_movimentacoes_descricao(){
   
   scanf("%d", &user_input);
 
-  return IN_OUT[user_input-1];
+  if(user_input > DESCRICAO_N  || user_input == 0){
+    //printf("Ops, a opção selecionada nao existe. Tente novamente com uma opção valida\n");
+    return "- Sem Descricao -";
+  }else{
+    // printf("A opcao selecionada foi: %s \n", TIPO_MOVIMENTACAO[user_input-1]);
+    return IN_OUT[user_input-1];
+  }
+
 }
 
 /* OPÇÕES TIPO DE MOVIMENTAÇÕES */
@@ -26,9 +33,13 @@ char* show_movimentacoes_types(){
   
   scanf("%d", &user_input);
 
-  // printf("A opcao selecionada foi: %s \n", TIPO_MOVIMENTACAO[user_input-1]);
-  // TODO: adicionar validação, se a opção selecionada existe
-  return TIPO_MOVIMENTACAO[user_input-1];
+  if(user_input > TIPO_MOVIMENTACAO_N  || user_input == 0){
+    //printf("Ops, a opção selecionada nao existe. Tente novamente com uma opção valida\n");
+    return "- Sem Tipo -";
+  }else{
+    // printf("A opcao selecionada foi: %s \n", TIPO_MOVIMENTACAO[user_input-1]);
+    return TIPO_MOVIMENTACAO[user_input-1];
+  }
 }
 
 /* OPÇÕES DO MENU */
