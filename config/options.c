@@ -3,12 +3,7 @@
 #include <string.h>
 
 #include "../models/carteira.c"
-
-#if defined(__MINGW32__) || defined(_MSC_VER)
-#define limpar_tela() system("cls")
-#else
-#define limpar_tela() system("clear")
-#endif
+#include "../utils/clear_command.h"
 
 /* OPÇÕES DE DESCRIÇÃO  */
 char* show_movimentacoes_descricao(){
@@ -47,6 +42,7 @@ void show_menu_options(){
   scanf("%d", &user_input);
   
   limpar_tela();
-
-  return router_menu(user_input-1);
+  
+  router_menu(user_input-1);
+  return;
 }

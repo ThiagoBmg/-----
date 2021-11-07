@@ -1,4 +1,4 @@
-#include "../utils/string_replace.c"
+#include "../utils/string_replace.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -7,7 +7,6 @@ void test_string_replace(){
     char string_test[] = "STRING REPLACE TESTE -> FAIL";
     char string_ok[] = "STRING REPLACE TESTE -> OK :)";
     string_replace(string_test,sizeof(string_ok), "FAIL", "OK :)");
-    //printf("%s", string_test);
 
     int result = strcmp(string_test, string_ok);
     printf("%s\n", string_test);

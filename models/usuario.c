@@ -3,14 +3,7 @@
 #include <string.h>
 #define USUARIO_FILE "./storage/usuario.txt"
 
-#if defined(__MINGW32__) || defined(_MSC_VER)
-#define limpar_input() fflush(stdin)
-#define limpar_tela() system("cls")
-#else
-#include "../include/stdio_ext.h"
-#define limpar_input() __fpurge(stdin)
-#define limpar_tela() system("clear")
-#endif
+#include "../utils/clear_command.h"
 
 char *nome= "", *meta_pessoal= "";
 long double valor = 0;
@@ -47,7 +40,7 @@ int user_save(char *nome, char *meta, char *valor){
     return 1;
 }
 
-void user_create(void){
+int user_create(void){
     char valor[100], meta_pessoal[100], nome[100]; 
     /* 
     // Responsável por cadastrar um usuário
@@ -64,8 +57,12 @@ void user_create(void){
     //printf("%s - %s - %s \n", nome, meta_pessoal, valor);
 
     int result = user_save(nome, meta_pessoal,valor);
-    if(result==1)
-        return menu();
-    printf("Algo deu errado com o seu cadastro, tente novamente mais tarde...\n\n");
-    return 0;
+    if(result==1){
+        menu();
+        return 1;
+    }
+    else{
+        printf("Algo deu errado com o seu cadastro, tente novamente mais tarde...\n\n");
+        return 0;
+    }
 }

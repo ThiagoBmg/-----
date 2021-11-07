@@ -11,7 +11,7 @@ funcionalidades. O trabalho poderá ser feito de forma individual ou em duplas.
 Deve ser levado em consideração a instalação do [GCC](https://gcc.gnu.org/install/binaries.html) para compilação e geração do executavel.
  
 ```bash
-gcc -o app main.c
+make
 ```
 
 ## Iniciando o módulo principal
