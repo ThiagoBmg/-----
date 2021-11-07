@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,16 +5,17 @@
 #include "../config/router.c"
 #include "../utils/clear_command.h"
 
-void menu(){
+void menu()
+{
   limpar_tela();
   printf("Ola, seja bem vindo ao Gerenciador Financeiro\n");
   
   show_menu_options();
   return;
-  // TODO: validar sistema operacional para validar o uso de cls ou clear
 }
 
-int recursao_menu(){
+int recursao_menu()
+{
     int user_input=0; 
     printf("Deseja realizar uma nova acao? \n1- Sim\n2- Nao \n\n");
 

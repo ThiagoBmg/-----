@@ -1,9 +1,4 @@
-
-#if defined(__MINGW32__) || defined(_MSC_VER)
-#define limpar_tela() system("cls")
-#else
-#define limpar_tela() system("clear")
-#endif
+#include "../utils/clear_command.h"
 
 char* step_01_mov_types(){
     limpar_tela();
