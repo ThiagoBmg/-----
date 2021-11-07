@@ -14,7 +14,6 @@
 // variavel global responsável por armazenar 
 // o contexto personalizado criado pela 
 // função create_context e definido em define_custom_context
-char * custom_context;
 char * context_temp;
 
 // responsável por realizar a leitura de um arquivo de texto
@@ -27,25 +26,19 @@ FILE * get_template(char * url)
     return file;
 }
 
-void export_report(){
-    // escrevendo um novo arquivo html
-    FILE *file = fopen("./reports/meu_relatorio.html", "w");
-    fprintf(file, custom_context);
-    fclose(file);
-    printf("Relatorio exportado com sucesso em ./reports/meu_relatorio.html \n\n");
-}
-
 void define_custom_context(FILE * template)
 {
-    custom_context = (char *)malloc(MAX_B*sizeof(char)); 
     char templateLine[MAX_B];
+
+    FILE *file = fopen("./reports/meu_relatorio.html", "w");
+
     while(!feof(template)){
         fgets(templateLine, MAX_B, template);
         string_replace(templateLine, MAX_B, "{{STR_REPLACE}}", context_temp);
-        //printf("valor recebido para concatenar: %s", templateLine);
-        strcat(custom_context, templateLine);
+        printf("html line -> : %s", templateLine);
+        fprintf(file, templateLine);
     }
-    
+    fclose(file);
     
     return; 
 }
@@ -122,7 +115,6 @@ int dashboard_service()
     FILE * template = get_template(TEMPLATE_PATH);
     create_context(lancamentos); // função que cria e atribui o contexto customizado a uma string global -> printf("%s", custom_context);
     define_custom_context(template); // função que substitui no template o contexto criado anteriormente
-    export_report();
     recursao_menu();  // é necessário remover em um cenário de testes
     return 0;
 }
