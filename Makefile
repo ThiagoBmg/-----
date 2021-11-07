@@ -9,7 +9,6 @@ start:
 	gcc -o app.exe main.c -w;
 	echo "Iniciando o projeto :) \n\n"
 	./app.exe 
-
 test:
 	#!/bin/sh
 	echo "Removendo arquivos de testes antigos..."
@@ -20,11 +19,10 @@ test:
 	./tests/test.exe
 build: 
 	#!/bin/sh
-#	docker rmi $(docker images -q);
-#	docker stop $(docker ps -a -q);
-#	docker rm $(docker ps -a -q);
 	docker build -t app_image .;
-	docker run -d -t app_image;
+	docker run -t -d --name gerenciador_financeiro_FEI app_image;
+	docker exec -it gerenciador_financeiro_FEI bash;
+
 # --- tests only ---
 #dashboard: 
 #	#!/bin/sh
