@@ -41,6 +41,26 @@ https://replit.com/@ThiagoBmg/gerenciador-financeiro-FEI
 
 basta clicar no botão RUN, na perte superior da interface 
 
+## Comandos 
+```bash
+# para iniciar o projeto localmente, atualizando a branch master antes
+make  
+
+# para iniciar os testes
+make test 
+
+# para construir o projeto com o Docker
+make build 
+
+# para iniciar o projeto sem buscar a versão mais atualizada
+make start 
+
+# para atualizar a branch master
+make updateBranch 
+
+# para remover o cenário do docker
+make remove 
+```
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
