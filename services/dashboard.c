@@ -22,24 +22,24 @@ char * context_temp;
 FILE * get_template(char * url)
 {
     FILE * file;
-    file = fopen(url, "r+");
+    file = fopen(url, "r");
     return file;
 }
 
 void define_custom_context(FILE * template)
 {
-    char templateLine[MAX_B];
-
     FILE *file = fopen("./reports/meu_relatorio.html", "w");
 
     while(!feof(template)){
+        char templateLine[MAX_B];
         fgets(templateLine, MAX_B, template);
         string_replace(templateLine, MAX_B, "{{STR_REPLACE}}", context_temp);
-       // printf("html line -> : %s", templateLine);
+        //printf("html line -> : %s", templateLine);
         fprintf(file, templateLine);
     }
+
     fclose(file);
-    printf("\n\nRelatório gerado com sucesso, uma versão atualizada do relatório foi disponibilizada no diretório ./reports/meu_relatorio.html \n\n");
+    printf("Relatório gerado com sucesso, uma versão atualizada do relatório foi disponibilizada no diretório ./reports/meu_relatorio.html \n\n");
     return; 
 }
 
@@ -82,32 +82,18 @@ char * create_context(FILE * lancamentos)
            return "";
         }
 
-       // substituindo os valores no template html com os valores do arquivo de lancamentos
+        // substituindo os valores no template html com os valores do arquivo de lancamentos
         string_replace(tag_, MAX_B, "{{%%mov_type%%}}", mov_type);
         string_replace(tag_, MAX_B, "{{%%valor%%}}", valor);
         string_replace(tag_, MAX_B, "{{%%data%%}}", data);
         string_replace(tag_, MAX_B, "{{%%descricao%%}}", descricao);
+
         // concatenando o texto em uma string temporaria 
         strcat(context_temp, tag_);
+       // free(tag_);
     }
+    free(lancamentosLine);
     return "done";
-}
-
-// responsável por ler e retornar o template do relatório em html
-// [args] template -> FILE = arquivo de template do relatório em HTML já aberto
-// [return] response -> str = retorna o template em html convertido para string
-char * read_template(FILE * template)
-{
-    char * response;
-    char htmlTemplateLine[MAX_B];
-    
-    do{
-        fgets(htmlTemplateLine, MAX_B, template);
-        strcat(response,htmlTemplateLine);
-    }
-    while(!feof(template));
-
-    return response;
 }
 
 int dashboard_service()
@@ -116,8 +102,8 @@ int dashboard_service()
     FILE * template = get_template(TEMPLATE_PATH);
     create_context(lancamentos); // função que cria e atribui o contexto customizado a uma string global -> printf("%s", custom_context);
     define_custom_context(template); // função que substitui no template o contexto criado anteriormente
-    recursao_menu();  // é necessário remover em um cenário de testes
-    
+
+    // limpando memoria 
     free(context_temp);
     free(template);
     free(lancamentos);
@@ -125,9 +111,8 @@ int dashboard_service()
     return 0;
 }
 
-/*  DEV MODE ONLY  */
-//int main()
-//{
-//    dashboard_service();
-//    return 0;
-//} 
+int main()
+{
+    dashboard_service();
+    return 0;
+} 

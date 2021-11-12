@@ -3,6 +3,8 @@ all:
 	make start
 start: 
 	#!/bin/sh
+	rm -rf ./services/dash.exe;
+	gcc -o ./services/dash.exe ./services/dashboard.c -w; 
 	echo "Removendo versões anteriores"
 	rm -rf app.exe;
 	echo "Compilando o projeto..."	
@@ -31,9 +33,5 @@ remove:
 # --- tests only ---
 dashboard: 
 	#!/bin/sh
-	echo "Removendo arquivo do serviço de dashboard..."
-	rm -rf ./services/dash.exe;
-	echo "Compilando serviço ..."
-	gcc -o ./services/dash.exe ./services/dashboard.c -w; 
-	echo "Iniciando serviço \n"
+
 	./services/dash.exe
