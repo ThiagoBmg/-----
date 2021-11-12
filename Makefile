@@ -24,7 +24,7 @@ build:
 	docker exec -it gerenciador_financeiro_FEI bash;
 updateBranch:
 	git checkout master;
-	git pull origin master;
+	git pull repo master;
 remove:
 	docker stop gerenciador_financeiro_FEI;
 	docker rm gerenciador_financeiro_FEI;

@@ -35,11 +35,11 @@ void define_custom_context(FILE * template)
     while(!feof(template)){
         fgets(templateLine, MAX_B, template);
         string_replace(templateLine, MAX_B, "{{STR_REPLACE}}", context_temp);
-        //printf("html line -> : %s", templateLine);
+       // printf("html line -> : %s", templateLine);
         fprintf(file, templateLine);
     }
     fclose(file);
-    printf("Relatório gerado com sucesso, uma versão atualizada do relatório foi disponibilizada no diretório ./reports/meu_relatorio.html \n\n");
+    printf("\n\nRelatório gerado com sucesso, uma versão atualizada do relatório foi disponibilizada no diretório ./reports/meu_relatorio.html \n\n");
     return; 
 }
 
@@ -50,7 +50,7 @@ void define_custom_context(FILE * template)
 char * create_context(FILE * lancamentos)
 {
     char lancamentosLine[MAX_B];
-    context_temp = (char *)malloc(10*sizeof(char)); 
+    context_temp = (char *)malloc(MAX_B*sizeof(char)); 
     // para cada lancamento ... 
     while(!feof(lancamentos)){
         fgets(lancamentosLine, MAX_B, lancamentos);
@@ -64,7 +64,9 @@ char * create_context(FILE * lancamentos)
 
         // guardando valores de acordo com sua posição
         mov_type = ptr;
-        do{ ptr = strtok(NULL, ",");
+        do
+        { 
+            ptr = strtok(NULL, ",");
             if(current_line==0)
                 valor = ptr;
             if(current_line==1)
@@ -72,22 +74,21 @@ char * create_context(FILE * lancamentos)
             if(current_line==2)
                 descricao = ptr;    
             current_line++;
-        }while (ptr != NULL);
+        }
+        while (ptr != NULL);
 
         // identificando que não existem mais registros validos para serem renderizados
         if(!valor) {
-            //printf("%s", custom_context);
-            //define_custom_context(context_temp);
-            return "";
+           return "";
         }
 
-        // substituindo os valores no template html com os valores do arquivo de lancamentos
+       // substituindo os valores no template html com os valores do arquivo de lancamentos
         string_replace(tag_, MAX_B, "{{%%mov_type%%}}", mov_type);
         string_replace(tag_, MAX_B, "{{%%valor%%}}", valor);
         string_replace(tag_, MAX_B, "{{%%data%%}}", data);
         string_replace(tag_, MAX_B, "{{%%descricao%%}}", descricao);
         // concatenando o texto em uma string temporaria 
-        strcat( context_temp, tag_);
+        strcat(context_temp, tag_);
     }
     return "done";
 }
@@ -116,6 +117,11 @@ int dashboard_service()
     create_context(lancamentos); // função que cria e atribui o contexto customizado a uma string global -> printf("%s", custom_context);
     define_custom_context(template); // função que substitui no template o contexto criado anteriormente
     recursao_menu();  // é necessário remover em um cenário de testes
+    
+    free(context_temp);
+    free(template);
+    free(lancamentos);
+   
     return 0;
 }
 
