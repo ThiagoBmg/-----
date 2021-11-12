@@ -82,12 +82,18 @@ char * create_context(FILE * lancamentos)
 int dashboard_service()
 {   
     FILE * lancamentos = fopen(LANCAMENTOS_PATH, "r+");
+    if(lancamentos == NULL){
+        //printf("\33[32m teste \33[0;0m");
+        printf("\033[41m Não existem lançamentos para serem renderizados... \033[0;0m\n\n");
+        return 0;
+    }
+
     FILE * template = fopen(TEMPLATE_PATH, "r+");
     char * custom_template = create_context(lancamentos); 
     //printf("%s", custom_template);
     
     define_custom_context(template, custom_template);
-    recursao_menu();
+    //recursao_menu();
     return 0;
 }
 

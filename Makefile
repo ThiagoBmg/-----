@@ -34,3 +34,9 @@ dashboard:
 	rm -rf ./services/dash.exe;
 	gcc -o ./services/dash.exe ./services/dashboard.c -w; 
 	./services/dash.exe
+tradding: 
+	#!/bin/sh
+	rm -rf ./services/tradding.exe;
+	gcc -o ./services/tradding.exe ./services/tradding.c -w;
+	./services/tradding.exe 
+
