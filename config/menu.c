@@ -29,7 +29,7 @@ int recursao_menu()
     }
     else if(user_input==2){
         printf("Ok\nAte Logo! :)\n");
-        exit(0);
+        exit(EXIT_SUCCESS);
     }
     else{
         printf("Nao entendi sua resposta, tente novamente...\n"); 

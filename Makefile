@@ -1,10 +1,8 @@
 all: 
-	make updateBranch
+#	make updateBranch
 	make start
 start: 
 	#!/bin/sh
-	rm -rf ./services/dash.exe;
-	gcc -o ./services/dash.exe ./services/dashboard.c -w; 
 	echo "Removendo versões anteriores"
 	rm -rf app.exe;
 	echo "Compilando o projeto..."	
@@ -22,7 +20,7 @@ test:
 build: 
 	#!/bin/shð
 	docker build -t app_image .;
-	docker run -t -d --name gerenciador_financeiro_FEI app_image;
+	docker run -t --name gerenciador_financeiro_FEI app_image;
 	docker exec -it gerenciador_financeiro_FEI bash;
 updateBranch:
 	git checkout master;
@@ -33,5 +31,6 @@ remove:
 # --- tests only ---
 dashboard: 
 	#!/bin/sh
-
+	rm -rf ./services/dash.exe;
+	gcc -o ./services/dash.exe ./services/dashboard.c -w; 
 	./services/dash.exe
