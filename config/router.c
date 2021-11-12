@@ -1,6 +1,6 @@
 #include "sobre.c"
 #include "../services/lancamento.c"
-#include "../services/dashboard.c"
+//#include "../services/dashboard.c"
 
 int router_menu(int *input){
   if(input==0)
@@ -8,7 +8,9 @@ int router_menu(int *input){
     lancamento_workflow();  
   if(input==1)
     //"Gerar Relatorio"
-    dashboard_service();
+    system("make dashboard");
+    // dashboard_service();
+    recursao_menu();
   if(input==2)
     //"Sobre Este App"
     show_sobre();
