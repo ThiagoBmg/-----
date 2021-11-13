@@ -4,6 +4,8 @@
 #define USUARIO_FILE "./storage/usuario.txt"
 
 #include "../utils/clear_command.h"
+#include "../utils/printf.config.h"
+
 
 char *nome= "", *meta_pessoal= "";
 long double valor = 0;
@@ -47,11 +49,11 @@ int user_create(void){
     */
     limpar_tela();
 
-    printf("Certo, Qual o seu primeiro nome?\n\n");
+    print("Certo, Qual o seu primeiro nome?", "green");
     scanf("%s", &nome);
-    printf("\nQual o sua meta de investimento?\n\n");
+    print("\nQual o sua meta de investimento?", "green");
     scanf("%s", &meta_pessoal);
-    printf("\nQual o seu valor acumulado atual?\n\n");
+    print("\nQual o seu valor acumulado atual?", "green");
     scanf("%s", &valor);
 
     //printf("%s - %s - %s \n", nome, meta_pessoal, valor);
