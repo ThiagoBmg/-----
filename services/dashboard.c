@@ -10,6 +10,7 @@
 #include <string.h>
 
 #include "../utils/string_replace.h"
+#include "../utils/printf.config.h"
 
 // TODO: validar se existe lançamento antes de gerar o relatório
 
@@ -23,7 +24,7 @@ void define_custom_context(FILE * template, char * custom)
         fprintf(file, templateLine);
     }
     fclose(file);
-    printf("Relatório gerado com sucesso, uma versão atualizada do relatório foi disponibilizada no diretório ./reports/meu_relatorio.html \n\n");
+    print("Relatório gerado com sucesso, uma versão atualizada do relatório foi disponibilizada no diretório ./reports/meu_relatorio.html", "");
     return; 
 }
 
@@ -63,7 +64,7 @@ char * create_context(FILE * lancamentos)
 
         // identificando que não existem mais registros validos para serem renderizados
         if(!valor) {
-            free(lancamentos);
+            //free(lancamentos);
            return context_temp;
         }
 
@@ -83,8 +84,7 @@ int dashboard_service()
 {   
     FILE * lancamentos = fopen(LANCAMENTOS_PATH, "r+");
     if(lancamentos == NULL){
-        //printf("\33[32m teste \33[0;0m");
-        printf("\033[41m Não existem lançamentos para serem renderizados... \033[0;0m\n\n");
+        print("Não existem lançamentos para serem renderizados...", "alert");
         return 0;
     }
 
