@@ -1,6 +1,7 @@
 #include "sobre.c"
 #include "../services/lancamento.c"
 #include "../services/dashboard.c"
+#include "../services/tradding.c"
 
 int router_menu(int *input){
   if(input==0)
@@ -11,11 +12,14 @@ int router_menu(int *input){
     //system("make dashboard");
     dashboard_service();
   if(input==2)
+    // simulação de tradding 
+    run_tradding();
+  if(input==3)
     //"Sobre Este App"
     show_sobre();
   else{
     // rota não encontrada
-    printf("Nao entendi sua resposta, tente novamente...\n");
+    //printf("Nao entendi sua resposta, tente novamente...\n");
     show_menu_options();
     return 0;
   }

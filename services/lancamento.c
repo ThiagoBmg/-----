@@ -28,7 +28,7 @@ int step_04_confirmacao(char *mov_type,long double mov_valor, char *mov_descrica
     printf("Valor da Movimentacao: %.2Lf \n", mov_valor);
     printf("Descricao da Movimentacao: %s \n\n", mov_descricao);
     
-    printf("Deseja confirmar este lancamento?\n1- Sim\n2- Nao\n\n");
+    printf("Deseja confirmar este lancamento?\n\33[32m 1\33[0;0m - Sim\n\33[32m 2\33[0;0m - Nao\n\n");
     int user_input = 0;
     scanf("%d", &user_input);
 

@@ -17,7 +17,7 @@ void menu()
 int recursao_menu()
 {
     int user_input=0; 
-    printf("Deseja realizar uma nova acao? \n1- Sim\n2- Nao \n\n");
+    printf("Deseja realizar uma nova acao?\n\33[32m 1\33[0;0m - Sim\n\33[32m 2\33[0;0m - Nao\n\n");
 
     scanf("%d", &user_input);
     limpar_tela();
@@ -32,7 +32,7 @@ int recursao_menu()
         exit(EXIT_SUCCESS);
     }
     else{
-        printf("Nao entendi sua resposta, tente novamente...\n"); 
+       // printf("Nao entendi sua resposta, tente novamente...\n"); 
         recursao_menu(); 
         return 1;
     }

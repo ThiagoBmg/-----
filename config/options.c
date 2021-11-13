@@ -10,7 +10,7 @@ char* show_movimentacoes_descricao(){
   int user_input = 0;
 
   for(int i=1; i< DESCRICAO_N+1; i++)
-    printf("%d - %s \n", i ,IN_OUT[i-1]);
+    printf("\33[32m%d\33[0;0m - %s \n", i ,IN_OUT[i-1]);
   
   scanf("%d", &user_input);
 
@@ -29,7 +29,7 @@ char* show_movimentacoes_types(){
   int user_input = 0; 
 
   for(int i =1; i < TIPO_MOVIMENTACAO_N+1 ; i++)
-    printf("%d - %s \n", i ,TIPO_MOVIMENTACAO[i-1]);
+    printf("\33[32m%d\33[0;0m - %s \n", i ,TIPO_MOVIMENTACAO[i-1]);
   
   scanf("%d", &user_input);
 
@@ -48,7 +48,7 @@ void show_menu_options(){
   printf("Escolha uma das opcoes para prosseguir: \n\n");
 
   for(int i =1; i < OPCOES_N+1 ; i++)
-    printf("%d - %s \n", i ,MENU_OPTIONS[i-1]);
+    printf("\33[32m%d\33[0;0m - %s \n", i ,MENU_OPTIONS[i-1]);
   
   scanf("%d", &user_input);
   
