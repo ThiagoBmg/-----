@@ -5,10 +5,10 @@
 
 /* OPÇÕES TIPO DE MOVIMENTAÇÕES */
 #define TIPO_MOVIMENTACAO_N  5
-#define OPCOES_N  4
+#define OPCOES_N  5
 #define DESCRICAO_N 2
 char TIPO_MOVIMENTACAO[TIPO_MOVIMENTACAO_N][20] = {"Moradia","Estudos", "Transporte", "Alimentacao", "Trabalho"};; 
-char MENU_OPTIONS[OPCOES_N][20] =  {"Novo Lancamento","Gerar Relatorio", "Tradding", "Sobre Este App"}; 
+char MENU_OPTIONS[OPCOES_N][20] =  {"Novo Lancamento","Gerar Relatorio", "Trading Simulator", "Sobre Este App", "Sair"}; 
 char IN_OUT[DESCRICAO_N][10] = {"Entrada", "Saida"};
 
 int novo_lancamento(char *mov_type,long double mov_valor, char *mov_descricao){
