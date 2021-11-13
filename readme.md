@@ -12,7 +12,7 @@ funcionalidades. O trabalho poderá ser feito de forma individual ou em duplas.
 
 ## ✨ Features
 * Minha Carteira: local aonde o usuário pode monitorar em tempo real a situação de sua carteira e pensar em estratégias para melhorar seu cenário. 
-* Dashboards: Possibilidade de extrair relatórios com dados da carteira do usuário
+* Dashboards: Possibilidade de extrair relatórios com dados da carteira do usuário (arquivo html)
 * Trading Simulator: Simulação de operação de um bot de trading (nível básico)
 
 ## 📦  Build
