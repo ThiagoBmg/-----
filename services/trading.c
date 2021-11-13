@@ -18,7 +18,7 @@ int randInRange(int min, int max)
   return min + (int) (rand() / (double) (RAND_MAX + 1) * (max - min + 1));
 }
 
-struct tradding
+struct trading
 {
     int initial_value;
     int final_value;
@@ -28,13 +28,13 @@ struct tradding
 };
 
 
-void run_tradding()
+void run_trading()
 {
  limpar_tela();
     print("Olá, seja bem vindo ao modelo de Tradding", "green");
     print("Para tornar sua expericencia melhor, siga as instruções a seguir :)", "");
     
-    struct tradding lancamento; 
+    struct trading lancamento; 
 
     print("\nDigite o valor que deseja investir...", "green");
     scanf("%ld", &lancamento.initial_value);

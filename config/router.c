@@ -1,7 +1,7 @@
 #include "sobre.c"
 #include "../services/lancamento.c"
 #include "../services/dashboard.c"
-#include "../services/tradding.c"
+#include "../services/trading.c"
 
 int router_menu(int *input){
   if(input==0)
@@ -13,7 +13,7 @@ int router_menu(int *input){
     dashboard_service();
   if(input==2)
     // simulação de tradding 
-    run_tradding();
+    run_trading();
   if(input==3)
     //"Sobre Este App"
     show_sobre();
