@@ -17,6 +17,9 @@ int router_menu(int *input){
   if(input==3)
     //"Sobre Este App"
     show_sobre();
+  if(input==4)
+    // Sair
+    exit(EXIT_SUCCESS);
   else{
     // rota não encontrada
     //printf("Nao entendi sua resposta, tente novamente...\n");

@@ -1,14 +1,15 @@
 #include "../utils/clear_command.h"
+#include "../utils/printf.config.h"
 
 char* step_01_mov_types(){
     limpar_tela();
-    printf("Selecione o tipo do lancamento a ser realizado: \n\n");
+    print("Selecione o tipo do lancamento a ser realizado:", "green");
     return show_movimentacoes_types();
 }
 
 long double step_02_valor(){
     limpar_tela();
-    printf("Agora digite o valor: \n");
+    print("Agora digite o valor:","green");
 
     long double v=0; 
     scanf("%Lf", &v);
@@ -17,18 +18,20 @@ long double step_02_valor(){
 
 char* step_03_descricao(){
     limpar_tela();
-    printf("Qual a descricao da movimentacao? \n");
+    print("Qual a descricao da movimentacao?", "green");
     return show_movimentacoes_descricao();
 }
 
 int step_04_confirmacao(char *mov_type,long double mov_valor, char *mov_descricao){
     limpar_tela();
-    printf("<< Lancamento a ser realizado >> \n");
+    print("<< Lancamento a ser realizado >>", "green");
     printf("Tipo da Movimentacao: %s \n", mov_type);
     printf("Valor da Movimentacao: %.2Lf \n", mov_valor);
     printf("Descricao da Movimentacao: %s \n\n", mov_descricao);
     
-    printf("Deseja confirmar este lancamento?\n\33[32m 1\33[0;0m - Sim\n\33[32m 2\33[0;0m - Nao\n\n");
+    print("Deseja confirmar este lancamento?", "green");
+    printf("\n\33[32m 1\33[0;0m - Sim\n\33[32m 2\33[0;0m - Nao\n\n");
+
     int user_input = 0;
     scanf("%d", &user_input);
 

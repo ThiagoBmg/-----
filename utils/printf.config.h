@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#if !defined PRINTF
+#define PRINTF
 void print(char * text, char * color){
     char space[4] = "\n\n";
 
@@ -13,3 +15,4 @@ void print(char * text, char * color){
     }
     return; 
 }
+#endif 

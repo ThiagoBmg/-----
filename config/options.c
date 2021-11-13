@@ -4,6 +4,8 @@
 
 #include "../models/carteira.c"
 #include "../utils/clear_command.h"
+#include "../utils/printf.config.h"
+
 
 /* OPÇÕES DE DESCRIÇÃO  */
 char* show_movimentacoes_descricao(){
@@ -45,7 +47,7 @@ char* show_movimentacoes_types(){
 /* OPÇÕES DO MENU */
 void show_menu_options(){
   int user_input = 0; 
-  printf("Escolha uma das opcoes para prosseguir: \n\n");
+  print("Escolha uma das opcoes para prosseguir:", "green");
 
   for(int i =1; i < OPCOES_N+1 ; i++)
     printf("\33[32m%d\33[0;0m - %s \n", i ,MENU_OPTIONS[i-1]);

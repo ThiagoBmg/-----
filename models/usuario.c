@@ -47,11 +47,11 @@ int user_create(void){
     */
     limpar_tela();
 
-    printf("Certo, Qual o seu primeiro nome?\n");
+    printf("Certo, Qual o seu primeiro nome?\n\n");
     scanf("%s", &nome);
-    printf("Qual o sua meta de investimento?\n");
+    printf("\nQual o sua meta de investimento?\n\n");
     scanf("%s", &meta_pessoal);
-    printf("Qual o seu valor acumulado atual?\n");
+    printf("\nQual o seu valor acumulado atual?\n\n");
     scanf("%s", &valor);
 
     //printf("%s - %s - %s \n", nome, meta_pessoal, valor);

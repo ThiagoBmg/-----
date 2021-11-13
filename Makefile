@@ -20,7 +20,7 @@ test:
 build: 
 	#!/bin/shð
 	docker build -t app_image .;
-	docker run -t --name gerenciador_financeiro_FEI app_image;
+	docker run -t -d --name gerenciador_financeiro_FEI app_image;
 	docker exec -it gerenciador_financeiro_FEI bash;
 updateBranch:
 	git checkout master;
