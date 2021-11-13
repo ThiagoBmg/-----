@@ -37,7 +37,7 @@ make
 ```
 
 ## Iniciando o projeto através do Replit
-https://replit.com/@ThiagoBmg/gerenciador-financeiro-FEI
+https://replit.com/@ThiagoBmg/genfinfei
 
 basta clicar no botão RUN, na perte superior da interface 
 
