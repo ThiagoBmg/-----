@@ -2,22 +2,26 @@
 #include "../services/lancamento.c"
 #include "../services/dashboard.c"
 #include "../services/trading.c"
+#include "../services/carteira.c"
 
 int router_menu(int *input){
   if(input==0)
     //"Novo Lancamento"
     lancamento_workflow();  
   if(input==1)
+    //"Minha Carteira"
+    carteira_service();	 
+  if(input==2)
     //"Gerar Relatorio"
     //system("make dashboard");
     dashboard_service();
-  if(input==2)
+  if(input==3)
     // simulação de tradding 
     run_trading();
-  if(input==3)
+  if(input==4)
     //"Sobre Este App"
     show_sobre();
-  if(input==4)
+  if(input==5)
     // Sair
     exit(EXIT_SUCCESS);
   else{
