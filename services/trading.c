@@ -54,7 +54,7 @@ void run_trading()
     for(int i=0; i<lancamento.max_rounds; i++){
 
         if(lancamento.final_value <= 0){
-            print("O valor inicial foi zerado devido... considere iniciar uma nova simulação", "alert");
+            print("A operação foi finalizada, pois o valor da operação é menor que zero... considere iniciar uma nova simulação", "alert");
             return;
         }
 

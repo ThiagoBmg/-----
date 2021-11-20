@@ -44,6 +44,14 @@ struct lancamento{
 	char * descricao; 
 };
 
+int is_valid(){
+   FILE * data = fopen(CARTEIRA_FILE, "r");
+
+   if (!data)
+      return 0;
+   return 1; 
+}
+
 
 // função que retorna o valor total na carteira do usuário
 int valor_guardado(void){
