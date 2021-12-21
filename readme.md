@@ -1,9 +1,3 @@
-# Trabalho prático – CC2632
-
-## Membros 
-- Thiago Braga Martins Gomes * Matrícula 22121064-4
-- Matteo Kozakevic Nardi  * Matrícula 22.120.050-4
-
 ## ⭐️ Sobre
 O trabalho prático da disciplina tem por objetivo desenvolver um algoritmo que simule um gerenciador
 financeiro. Esse gerenciador financeiro deverá armazenar informações de receitas e gastos de uma carteira
